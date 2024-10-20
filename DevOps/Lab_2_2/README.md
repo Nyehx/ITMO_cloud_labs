@@ -19,7 +19,54 @@
 
 Покажем, что наши контейнеры на самом деле работают, и выыполняют то, что написано в bash.md.
 
+```
+version: '3'
+
+services:
+  service1:
+    image: ubuntu:latest
+    command: bash -c "echo 'Hello from Service 1!'"
+    restart: "no"
+
+  service2:
+    image: ubuntu:latest
+    command: bash -c "echo 'Hello from Service 2!'"
+    restart: "no"
+
+  service3:
+    image: ubuntu:latest
+    command: bash -c "echo '${GREETING} from ${TARGET}! Secret key 123456'"
+    environment:
+      - GREETING='Hello'
+      - TARGET='Service3'
+    restart: "no"
+```
+
 ![net](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_2_2/1.png)
+
+```
+version: '3.3'
+
+services:
+  service1:
+    image: ubuntu:20.04
+    command: bash -c "echo 'Hello from Service 1!'"
+    restart: "unless-stopped"
+
+  service2:
+    image: ubuntu:20.04
+    command: bash -c "echo 'Hello from Service 2!'"
+    restart: "unless-stopped"
+
+  service3:
+    image: ubuntu:20.04
+    command: bash -c "echo '${GREETING} from ${TARGET}! Secret Key ${SECRET_KEY}'"
+    environment:
+      - GREETING=${GREETING}
+      - TARGET=${TARGET}
+      - SECRET_KEY=${SECRET_KEY}
+    restart: "unless-stopped"
+```
 
 ![net](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_2_2/2.png)
 
@@ -29,32 +76,86 @@
 
 Сначала опишем, какие "плохие практики" были использованы при первоначальном написании докерфайла.
 
-1. Первая "плохая практика" - не указана конкретная версия базового образа. 
+1. Первая "плохая практика" заключается в использовании "latest" для образов
 
-* FROM ubuntu:latest
+* Использование образа ubuntu:latest может привести к непредсказуемым изменениям в работе приложения при обновлениях образа.
 
 В данном примере в качестве базового образа для докера используется ubuntu последней версии. Последняя версия может измениться, и написанный докерфайл может перестать работать в более новых версиях.
 
-2. Вторая "плохая практика" заключается в том, что мы запускаем все процессы от имени пользователя root.
+2. Вторая "плохая практика" заключается в том, что мы жустко указываем секретный код в docker-compose файле.
+* В service3 происходит жесткое кодирование строки Secret Key: 123456, что делает приложение уязвимым.
+Каждый может посмотреть пароль.
 
-3. Третья "плохая практика" - использование COPY . /app, что приводит к копированию всех файлов из текущей директории, а это увеличивает размер контейнера.
+3. Третья "плохая практика" - Прямая инициализация переменных
+
+ * Переменные инициализируются напрямую а не в окружении.
+  
+4. Четвертая "плохая практика" - Отсутствие директив для перезапуска
+
+ * Указание restart: no не позволяет контейнерам автоматически перезапуститься в случае сбоя
 
 
 ### Хороший Dockerfile
 
 По порядку опишем, какие решения были приняты для исправления ошибок. Так же опишем, как исправление ошибок повлияло на реузльтат.
 
-1. Укажем конкретную версию, для которой будет работать наш Docker.
+1. Укажем конкретную версию.
 
-* FROM ubuntu:20.04
+* image: ubuntu:20.04
 
 Независимо от внешних источников, Docker всегда будет запускаться одинаково и будет стабилен через некторое время - это "хорошая практика".
 
-2. Мы создаем и используем ограниченного пользователя.
-* RUN useradd -m myuser USER myuser
-3. Так же в хорошем докерфайле мы копируем только необходимый файл, в данном случае только start.sh
-* COPY start.sh /app/start.sh
- 
+2. Использование переменных окружения для секретных ключей:
+* В service3 переменная SECRET_KEY теперь передается через переменные окружения, а не жестко закодирована. Это повышает безопасность.
+
+3. Корректная передача переменных окружения:
+* Переменные GREETING и TARGET передаются в service3 через переменные окружения, что гарантирует, что они будут инициализированы при выполнении.
+
+4. Политики перезапуска:
+* Добавлены директивы restart: unless-stopped для всех сервисов, что обеспечивает автоматический перезапуск контейнеров в случае сбоев.
+
+  
+ ## Сетевая настройка Docker Compose проекта
+В Docker Compose файле добавим блок с объявлением сетей `networks:`. Кроме этого, подключим сервисы к разным сетям (`network1`,  `network2` и `network3`), теперь они изолированы друг от друга.
+```
+version: '3.3'
+
+services:
+  service1:
+    image: ubuntu:20.04
+    command: bash -c "echo 'Hello from Service 1!'"
+    restart: "unless-stopped"
+    networks:
+      - network1
+
+  service2:
+    image: ubuntu:20.04
+    command: bash -c "echo 'Hello from Service 2!'"
+    restart: "unless-stopped"
+    networks:
+      - network2
+
+  service3:
+    image: ubuntu:20.04
+    command: bash -c "echo '${GREETING} from ${TARGET}! Secret Key ${SECRET_KEY}'"
+    environment:
+      - GREETING=${GREETING}
+      - TARGET=${TARGET}
+      - SECRET_KEY=${SECRET_KEY}
+    restart: "unless-stopped"
+    networks:
+      - network3
+
+
+
+networks:
+  network1:
+    driver: bridge
+  network2:
+    driver: bridge
+  network3:
+    driver: bridge
+```
 
 
 ## Результаты
