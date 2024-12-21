@@ -15,13 +15,11 @@ def factorial(n):
 
 def main():
     if len(sys.argv) != 2:
-        print("Использование: python factorial.py <целое число>")
         return
 
     try:
         n = int(sys.argv[1])
         result = factorial(n)
-        print(f"Факториал {n} равен {result}")
     except ValueError as e:
         print(e)
 
