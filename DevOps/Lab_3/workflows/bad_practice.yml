@@ -23,4 +23,4 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           push: true
-          tags: cradabi/lab_3:latest
+          tags: cradabi/my_app:latest
