@@ -20,6 +20,7 @@ def main():
     try:
         n = int(sys.argv[1])
         result = factorial(n)
+        print("Факториал равен " + str(result))
     except ValueError as e:
         print(e)
 
