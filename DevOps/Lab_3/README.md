@@ -13,6 +13,75 @@
 
 ![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3/1.png)
 
+Код `Dockerfile`:
+```
+FROM ubuntu:20.04
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y python3 
+
+ADD factorial.py .
+```
+
+Код `factorial.py`, который выводит факториал введенного из консоли числа:
+```
+import sys
+
+
+def factorial(n):
+    if n < 0:
+        raise ValueError("Факториал не определен.")
+    elif n == 0 or n == 1:
+        return 1
+    else:
+        result = 1
+        for i in range(2, n + 1):
+            result *= i
+        return result
+
+
+def main():
+    if len(sys.argv) != 2:
+        return
+
+    try:
+        n = int(sys.argv[1])
+        result = factorial(n)
+        print("Факториал равен " + str(result))
+    except ValueError as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Код `test_factorial.py`, который тестирует основную программу:
+
+```
+import unittest
+from factorial import factorial
+
+
+class TestFactorial(unittest.TestCase):
+
+    def test_factorial_of_positive_numbers(self):
+        self.assertEqual(factorial(5), 120)
+        self.assertEqual(factorial(6), 720)
+        self.assertEqual(factorial(0), 1)
+        self.assertEqual(factorial(1), 1)
+
+    def test_factorial_of_negative_numbers(self):
+        with self.assertRaises(ValueError):
+            factorial(-1)
+
+
+if __name__ == "__main__":
+    unittest.main()
+```
+
+
 ## Плохие практики 
 
 В папке `.github/workflows` создадим файл `bad_practice.yml`.
