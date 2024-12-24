@@ -20,11 +20,16 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: docker/setup-buildx-action@v3
+      - uses: dopplerhq/cli-action@v3
+      - run: |
+          echo ${{ secrets.DOPPLER_TOKEN }} | doppler configure set token --scope /
+          echo "DOCKER_HUB_NAME=$(doppler secrets get DOCKER_HUB_NAME --plain)" >> $GITHUB_ENV
+          echo "DOCKER_HUB_TOKEN=$(doppler secrets get DOCKER_HUB_TOKEN --plain)" >> $GITHUB_ENV
       - uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_HUB_NAME }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+          username: ${{ env.DOCKER_HUB_NAME }}
+          password: ${{ env.DOCKER_HUB_TOKEN }}
       - uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ secrets.DOCKER_HUB_NAME }}/test_rep:latest
+          tags: ${{ env.DOCKER_HUB_NAME }}/test_rep:latest
