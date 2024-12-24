@@ -101,7 +101,7 @@ jobs:
 4. Указан тригерром пуш на главной(main) ветке.
 5. Вместо использования секретных данных напрямую, создадим секреты в настройке репозитория, и добавим их значения в yml файл через переменные.
 
-
+![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3/8.png)
 
 6. Используем для установки питона actions, это гарантирует большую стабильность и универсальность.
 
@@ -109,11 +109,13 @@ jobs:
 
 ![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3/5.png)
 
-![image]()
+
+
+![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3/7.png)
 
 С помощью `docker pull cradabi/test_rep:latest` загружаю с докерхаба образ себе на комп. и проверяем работу
 
-![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3/7.png)
+![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3/4.png)
 
 Как видим, все работает.
 
