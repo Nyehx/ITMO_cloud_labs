@@ -1,0 +1,48 @@
+IT Tower;Service Family;Service Type;Service Sub Type;Service Usage Type;Product Code;Usage Type; [lineItem/Operation];lineItem/LineItemDescription
+Storage;Storage&Content Delivery;Amazon S3;Data Transfer;Data Transfer Charge;AmazonS3;%DataTransfer%;;
+Storage;Storage&Content Delivery;Amazon S3;Data Transfer;Regions Data Transfer Bytes;AmazonS3;%AWS-%ytes;;
+Storage;Storage&Content Delivery;Amazon S3;Direct Connect;Direct Connect Traffic;AmazonS3;%DataXfer%;;
+Storage;Storage&Content Delivery;Amazon S3;Data Retrieval;Data Retrieval Bytes;AmazonS3;%Retrieval-Bytes%;;
+Storage;Storage&Content Delivery;Amazon S3;S3 Replication Time Control;S3RTC Data Bytes;AmazonS3;%S3RTC%-Bytes%;;
+Storage;Storage&Content Delivery;Amazon S3;S3 One Zone-IA;Data Retrieval Amount;AmazonS3;%Retrieval-ZIA;;
+Storage;Storage&Content Delivery;Amazon S3;AWS Region;CloudFront Data Transfer Amount;AmazonS3;%CloudFront%Bytes;;
+Database;Database;Amazon Quantum Ledger Database;Ledger Database;Storage;AmazonQLDB;%Storage;;
+Database;Database;Amazon Quantum Ledger Database;IOP;IO Request;AmazonQLDB;%IO-Request;;
+Database;Database;Amazon Redshift;Additional Costs;Tax;AmazonRedshift;;;Tax%
+Database;Database;Amazon Redshift;Fees;Heavy Usage Charge;AmazonRedshift;%HeavyUsage%;;
+Database;Database;Amazon Redshift;RA3 Cluster;Nodes;AmazonRedshift;%Node:ra%;;
+Database;Database;Amazon Redshift;Redshift Cost Explorer;Data Scanned Amount;AmazonRedshift;%DataScanned%;;
+Database;Database;Amazon Redshift;DC2 Cluster;Nodes;AmazonRedshift;%Node:dc%;;
+Database;Database;Amazon Redshift;Dense Storage;DS2 Nodes;AmazonRedshift;%Node:ds%;;
+Networking;Networking;Amazon Virtual Private Cloud;Additional Costs;Tax;AmazonVPC;;;Tax%
+Networking;Networking;Amazon Virtual Private Cloud;VPC Data Transfer;Data Transfer Bytes;AmazonVPC;%DataTransfer%Bytes;;
+Networking;Networking;Amazon Virtual Private Cloud;Data Transfer;Regions Data Transfer Bytes;AmazonVPC;%AWS%Bytes;;
+Networking;Networking;Amazon Virtual Private Cloud;AWS Region;CloudFront Data Transfer Amount;AmazonVPC;%CloudFront%Bytes%;;
+Networking;Networking;Amazon Virtual Private Cloud;Virtual Private Network ;VPN Usage Hours;AmazonVPC;%VPN-Usage-Hours:ipsec.1;;
+Networking;Networking;Amazon Virtual Private Cloud;AWS Transit Gateway;Transit Gateway Hours;AmazonVPC;%TransitGateway-Hours;;
+Networking;Networking;Amazon Virtual Private Cloud;AWS Transit Gateway;Transit Gateway Bytes;AmazonVPC;%TransitGateway-Bytes;;
+Networking;Networking;Amazon Virtual Private Cloud;VPC Endpoint;Data Transfer to Endpoint Bytes;AmazonVPC;%VpcEndpoint-Bytes;;
+Networking;Networking;Amazon Virtual Private Cloud;VPC Endpoint;Data Transfer to Endpoint Bytes;AmazonVPC;%VpcEndpoint-Hours;;
+Networking;Networking;Amazon Virtual Private Cloud;VPC Endpoint;Endpoint Connection Hours;AmazonVPC;%EndpointHours;;
+Networking;Networking;Amazon Virtual Private Cloud;Traffic Mirroring;Elastic Network Interface;AmazonVPC;%ENI-Mirror;;
+Networking;Networking;Amazon Virtual Private Cloud;VPC Peering;VPC Connection Hours;AmazonVPC;%ConnectionHours;;
+Cloud Services;Mobile Services;Amazon Simple Email Service;Additional Costs;Tax;AmazonSES;;;Tax%
+Cloud Services;Mobile Services;Amazon Simple Email Service;Email Sending;Email Recipients;AmazonSES;%Recipients%;;
+Cloud Services;Mobile Services;Amazon Simple Email Service;Email Sending;Email Attachment Size Bytes;AmazonSES;%AttachmentsSize-Bytes;;
+Cloud Services;Mobile Services;Amazon Simple Email Service;Email Receiving;Emaill Received Chunk;AmazonSES;%ReceivedChunk%;;
+Cloud Services;Mobile Services;Amazon Simple Email Service;Email Sending;Email Message;AmazonSES;%Message%;;
+Cloud Services;Mobile Services;Amazon Simple Email Service;Email Sending;Email Data Transfer Bytes;AmazonSES;%DataTransfer-Out-Bytes;;
+Cloud Services;Mobile Services;Amazon Simple Email Service;Email Receiving;Email Data Transfer Bytes;AmazonSES;%DataTransfer-In-Bytes;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;Additional Costs;Tax;AmazonSNS;;;Tax%
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS Requests;Tier 1 Requests Count;AmazonSNS;%Requests-Tier1;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS Requests;Tier 2 Requests Count;AmazonSNS;%Requests-Tier2;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS Data Transfer;SNS Data Transfer Out Bytes;AmazonSNS;%DataTransfer-Out-Bytes;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS Data Transfer;SNS Data Transfer In Bytes;AmazonSNS;%DataTransfer-In-Bytes;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS GCM Messages;SNS GCM Delivery Attempts;AmazonSNS;%DeliveryAttempts-GCM;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS SMTP Messages;SNS SMTP Delivery Attempts;AmazonSNS;%DeliveryAttempts-SMTP;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS HTTP Messages;SNS HTTP Delivery Attempts;AmazonSNS;%DeliveryAttempts-HTTP;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS SQS Messages;SNS SQS Delivery Attempts;AmazonSNS;%DeliveryAttempts-SQS;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS SMS;SNS SMS Delivery Price;AmazonSNS;%SMS-Price%;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS SMS;SNS SMS Delivery Count;AmazonSNS;%SMS-Sent%;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS Apple Push Notification Service;SNS APNS Delivery Attempts;AmazonSNS;%DeliveryAttempts-APNS%;;
+Cloud Services;Developer Tools;Amazon Simple Notification Service;SNS Lambda Functions;SNS Lambda Function Delivery Attempts;AmazonSNS;%DeliveryAttempts-LAMBDA;;
