@@ -70,6 +70,19 @@ jobs:
 
 ![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3_2/6.png)
 
+
+### Запускаем образ на машине
+Вводим следующие комманды в терминал:
+* `sudo docker pull cradabi/test_rep:latest`
+* `sudo docker run -it cradabi/test_rep`
+
+После этого можно спококйно запускать `factorial.app` через `python factorial.py`.
+Покажем работоспособность.
+
+![image](https://github.com/Nyehx/ITMO_cloud_labs/blob/main/DevOps/Lab_3_2/7.png)
+
+Работоспособность проверена.
+
 ## Аргументы
 ### Почему способ красивый?
 Максимально понятный и простой интерфейс Doppler'a, понятная документация Doppler CLI. Создаем в допплере секреты и токен, в yaml файле дописываем несколько строчек и добавляем один секрет в репозиторий, ctrl+c -> ctrl+v несколько раз - всё.
