@@ -141,28 +141,22 @@ jobs:
   Test:
     runs-on: ubuntu-20.04
     steps:
-      - name: Check out
-        uses: actions/checkout@v4
-      - name: Installing python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      - name: Unit tests
-        run: python3 -m unittest test_factorial.py
+      - run: python3 -m unittest test_factorial.py
 
   Build-deploy:
     needs: Test
     runs-on: ubuntu-20.04
     steps:
-      - name: Set up Docker Build
-        uses: docker/setup-buildx-action@v3
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_HUB_NAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-      - name: Push to docker hub
-        uses: docker/build-push-action@v6
+      - uses: docker/build-push-action@v6
         with:
           push: true
           tags: ${{ secrets.DOCKER_HUB_NAME }}/test_rep:latest
